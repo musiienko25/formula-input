@@ -1,0 +1,49 @@
+.main {
+  width: 50%;
+  margin: auto;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Розташування між лівими та правими елементами */
+  padding: 8px;
+  cursor: pointer;
+  align-items: center;
+  background-color: #c4c4c4;
+}
+
+.label-right {
+  display: flex;
+
+}
+
+.icons-container {
+  display: flex;
+  align-items: center;
+}
+
+.left-icons {
+  display: flex;
+  align-items: center;
+}
+
+.arrow-icon {
+  margin-right: 4px;
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+.label:hover .arrow-icon {
+  transform: translateY(-2px); /* Рух вниз при наведенні */
+}
+
+.info-icon {
+  margin-right: 4px;
+  font-size: 14px;
+}
+
+.dots-icon {
+  margin-left: auto;
+  font-size: 14px;
+}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Select, { components } from "react-select";
 import makeAnimated from "react-select/animated";
 import { colourOptions } from "./data";
+import "./styles.css"; // Підключення зовнішніх стилів
 
 const CustomInput = ({ value, onChange, onKeyDown, ...props }) => (
   <components.Input
@@ -26,19 +27,16 @@ const MultiTabSelector = () => {
     switch (event.key) {
       case "Enter":
       case "Tab":
-        // Перевірка чи введений текст є в списку опцій
         const optionExists = colourOptions.find(
           (option) => option.label.toLowerCase() === inputValue.toLowerCase()
         );
 
         if (optionExists) {
-          // Якщо опція існує, додаємо її до вибраних
           setSelectedOptions((prevSelected) => [
             ...prevSelected,
             { label: optionExists.label, value: optionExists.value },
           ]);
         } else {
-          // Якщо опція не існує, додаємо як текст
           setSelectedOptions((prevSelected) => [
             ...prevSelected,
             { label: inputValue, value: inputValue, isText: true },
@@ -56,7 +54,6 @@ const MultiTabSelector = () => {
     setSelectedOptions(selected);
   };
 
-  // Компонент для відображення власних значень, які не є опціями
   const CustomMultiValueContainer = ({ children, ...props }) => (
     <components.MultiValueContainer {...props}>
       {props.data.isText ? <span>{props.data.label}</span> : children}
@@ -64,9 +61,18 @@ const MultiTabSelector = () => {
   );
 
   return (
-    <div>
+    <div className="main">
       <label htmlFor="multi-select" className="label">
-        Select Colours
+        <div className="icons-container">
+          <div className="left-icons">
+            <span className="arrow-icon">&#9660;</span> {/* Стрілочка вниз */}
+          </div>
+          {/* Три точки */}
+        </div>
+        <div className="label-right">
+          <span className="info-icon">ℹ️</span> {/* Іконка інформації */}
+          <span className="dots-icon">...</span>
+        </div>
       </label>
       <Select
         id="multi-select"

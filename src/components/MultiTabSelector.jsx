@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Select, { components } from "react-select";
 import makeAnimated from "react-select/animated";
 import { useQuery } from "@tanstack/react-query";
 import { create } from "zustand";
-import "./styles.css"; // Підключення зовнішніх стилів
+import "./styles.css";
 
 const fetchColours = async () => {
   const res = await fetch(
@@ -13,14 +13,12 @@ const fetchColours = async () => {
     throw new Error("Network response was not ok");
   }
   const data = await res.json();
-  console.log("Fetched data:", data); // Додаємо лог для перевірки отриманих даних
   return data.map((item) => ({
-    label: item.name, // Використання поля name для мітки
+    label: item.name,
     value: item.id,
   }));
 };
 
-// Zustand store
 const useStore = create((set) => ({
   inputValue: "",
   selectedOptions: [],
@@ -28,14 +26,18 @@ const useStore = create((set) => ({
   setSelectedOptions: (options) => set({ selectedOptions: options }),
 }));
 
-const CustomInput = ({ value, onChange, onKeyDown, ...props }) => (
-  <components.Input
-    {...props}
-    value={value}
-    onChange={onChange}
-    onKeyDown={onKeyDown}
-  />
-);
+const CustomInput = ({ value, onChange, onKeyDown, ...props }) => {
+  // Filter out unwanted props
+  const { onExited, ...filteredProps } = props;
+  return (
+    <components.Input
+      {...filteredProps}
+      value={value}
+      onChange={onChange}
+      onKeyDown={onKeyDown}
+    />
+  );
+};
 
 const MultiTabSelector = () => {
   const animatedComponents = makeAnimated();
@@ -50,10 +52,6 @@ const MultiTabSelector = () => {
     queryKey: ["colours"],
     queryFn: fetchColours,
   });
-
-  useEffect(() => {
-    console.log("colourOptions:", colourOptions);
-  }, [colourOptions]);
 
   const handleInputChange = (newValue) => {
     setInputValue(newValue);
@@ -106,7 +104,9 @@ const MultiTabSelector = () => {
         <div className="label upper-label">
           <div>
             <div className="icons-container">
-              <div className="left-icons"></div>
+              <div className="left-icons">
+                <span className="arrow-icon">&#9660;</span>
+              </div>
             </div>
           </div>
           <div className="upper-label_right">

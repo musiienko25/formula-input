@@ -11,60 +11,34 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Submission -
+Github link to lucidtasksubmission@gmail.com
+Send a Hosted Version from Vercel or a similar hosting services
 
-### `npm test`
+Hello,
+You have 6 hours to complete the task, send whatever you manage to complete.
+The Task:
+Implement the formula input functionality as it is seen in pry.
+You must go to pry.co, and edit a formula to see the entire functionality - DO NOT START THE TASK UNTIL YOU DID.  
+Go to pry.co
+Signup for a free trial
+Go to the models page
+Open the formula input and play with it to understand it
+link to video displaying the UI to implement - https://drive.google.com/file/d/1Frvt2R6tD5C2w_x5keUYjUDUSx7XK1am/view?usp=drive_link
+We are looking for functionality first!, design is a second priority (but also very important).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You can use whatever libraries and online solutions you find, we encourage you to search for solutions that will help you implement them.
 
-### `npm run build`
+Hint - Think about what kind of tools coders are using that look similar to this functionality of a hybrid input with autocomplete
+Features :
+managing local state in Zustand
+manage API state in React Query - Use this endpoint for autocomplete suggestions in React query
+Formula Input Features:
+Supporting operands between tags - (+,-,\*,(,),^,/…..)
+Supporting writing between tags
+Deleting a TAG
+Autocomplete suggestions - Support autocomplete also after an operand is written
+Editing in each tag the (x) sign (Writing inside the tag as an input) - See pry in tag editing
+Calculating values is a bonus (Assign some dummy variable values and accept the operations).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Good Luck

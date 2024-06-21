@@ -1,12 +1,12 @@
 import React from "react";
-import CountrySelector from "../components/CountrySelector";
+import MultiTabSelector from "../components/MultiTabSelector";
 
 const MainPage = () => {
   return (
     <div>
       MainPage
       <form>
-        <CountrySelector />
+        <MultiTabSelector />
       </form>
     </div>
   );

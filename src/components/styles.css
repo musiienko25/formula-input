@@ -1,6 +1,7 @@
 .main {
   width: 50%;
   margin: auto;
+  margin-top: 60px;
 }
 
 .label {
@@ -15,7 +16,30 @@
 
 .label-right {
   display: flex;
+}
 
+.lower-label {
+  height: 40px;
+  background-color: #f6f8fa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px;
+}
+
+.lower-label_error {
+  font-size: 22px;
+}
+
+.lower-label_date {
+  background-color: #eceef0;
+  padding: 7px;
+  font-size: 14px;
+  border-radius: 6px;
+}
+
+.upper-label_right {
+  display: flex;
 }
 
 .icons-container {

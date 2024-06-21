@@ -62,15 +62,23 @@ const MultiTabSelector = () => {
 
   return (
     <div className="main">
-      <label htmlFor="multi-select" className="label">
-        <div className="icons-container">
-          <div className="left-icons">
-            <span className="arrow-icon">&#9660;</span>
+      <label htmlFor="multi-select">
+        <div className="label upper-label">
+          <div>
+            <div className="icons-container">
+              <div className="left-icons">
+                <span className="arrow-icon">&#9660;</span>
+              </div>
+            </div>
+          </div>
+          <div className="upper-label_right">
+            <span className="info-icon">ℹ️</span>
+            <span className="dots-icon">...</span>
           </div>
         </div>
-        <div className="label-right">
-          <span className="info-icon">ℹ️</span>
-          <span className="dots-icon">...</span>
+        <div className="lower-label">
+          <div className="lower-label_error">Error</div>
+          <div className="lower-label_date">Jun 2024</div>
         </div>
       </label>
       <Select
@@ -89,6 +97,7 @@ const MultiTabSelector = () => {
         onInputChange={handleInputChange}
         onKeyDown={handleKeyDown}
         onChange={handleChange}
+        placeholder=""
       />
     </div>
   );

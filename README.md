@@ -20,5 +20,7 @@ Multi tag input APP
 Tech stack:
 
 React
+
 zustand
+
 React query

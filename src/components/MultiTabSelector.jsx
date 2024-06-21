@@ -65,12 +65,11 @@ const MultiTabSelector = () => {
       <label htmlFor="multi-select" className="label">
         <div className="icons-container">
           <div className="left-icons">
-            <span className="arrow-icon">&#9660;</span> {/* Стрілочка вниз */}
+            <span className="arrow-icon">&#9660;</span>
           </div>
-          {/* Три точки */}
         </div>
         <div className="label-right">
-          <span className="info-icon">ℹ️</span> {/* Іконка інформації */}
+          <span className="info-icon">ℹ️</span>
           <span className="dots-icon">...</span>
         </div>
       </label>
@@ -80,6 +79,7 @@ const MultiTabSelector = () => {
         components={{
           ...animatedComponents,
           Input: CustomInput,
+          DropdownIndicator: () => null,
           MultiValueContainer: CustomMultiValueContainer,
         }}
         value={selectedOptions}

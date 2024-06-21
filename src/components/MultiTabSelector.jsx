@@ -26,10 +26,24 @@ const MultiTabSelector = () => {
     switch (event.key) {
       case "Enter":
       case "Tab":
-        setSelectedOptions((prevSelected) => [
-          ...prevSelected,
-          { label: inputValue, value: inputValue },
-        ]);
+        // Перевірка чи введений текст є в списку опцій
+        const optionExists = colourOptions.find(
+          (option) => option.label.toLowerCase() === inputValue.toLowerCase()
+        );
+
+        if (optionExists) {
+          // Якщо опція існує, додаємо її до вибраних
+          setSelectedOptions((prevSelected) => [
+            ...prevSelected,
+            { label: optionExists.label, value: optionExists.value },
+          ]);
+        } else {
+          // Якщо опція не існує, додаємо як текст
+          setSelectedOptions((prevSelected) => [
+            ...prevSelected,
+            { label: inputValue, value: inputValue, isText: true },
+          ]);
+        }
         setInputValue("");
         event.preventDefault();
         break;
@@ -42,6 +56,13 @@ const MultiTabSelector = () => {
     setSelectedOptions(selected);
   };
 
+  // Компонент для відображення власних значень, які не є опціями
+  const CustomMultiValueContainer = ({ children, ...props }) => (
+    <components.MultiValueContainer {...props}>
+      {props.data.isText ? <span>{props.data.label}</span> : children}
+    </components.MultiValueContainer>
+  );
+
   return (
     <div>
       <label htmlFor="multi-select" className="label">
@@ -50,7 +71,11 @@ const MultiTabSelector = () => {
       <Select
         id="multi-select"
         closeMenuOnSelect={false}
-        components={{ ...animatedComponents, Input: CustomInput }}
+        components={{
+          ...animatedComponents,
+          Input: CustomInput,
+          MultiValueContainer: CustomMultiValueContainer,
+        }}
         value={selectedOptions}
         isMulti
         options={colourOptions}

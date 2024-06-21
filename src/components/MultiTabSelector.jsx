@@ -1,8 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import Select, { components } from "react-select";
 import makeAnimated from "react-select/animated";
-import { colourOptions } from "./data";
+import { useQuery } from "@tanstack/react-query";
+import { create } from "zustand";
 import "./styles.css"; // Підключення зовнішніх стилів
+
+const fetchColours = async () => {
+  const res = await fetch(
+    "https://652f91320b8d8ddac0b2b62b.mockapi.io/autocomplete"
+  );
+  if (!res.ok) {
+    throw new Error("Network response was not ok");
+  }
+  const data = await res.json();
+  console.log("Fetched data:", data); // Додаємо лог для перевірки отриманих даних
+  return data.map((item) => ({
+    label: item.name, // Використання поля name для мітки
+    value: item.id,
+  }));
+};
+
+// Zustand store
+const useStore = create((set) => ({
+  inputValue: "",
+  selectedOptions: [],
+  setInputValue: (value) => set({ inputValue: value }),
+  setSelectedOptions: (options) => set({ selectedOptions: options }),
+}));
 
 const CustomInput = ({ value, onChange, onKeyDown, ...props }) => (
   <components.Input
@@ -15,8 +39,21 @@ const CustomInput = ({ value, onChange, onKeyDown, ...props }) => (
 
 const MultiTabSelector = () => {
   const animatedComponents = makeAnimated();
-  const [inputValue, setInputValue] = useState("");
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const { inputValue, selectedOptions, setInputValue, setSelectedOptions } =
+    useStore();
+
+  const {
+    data: colourOptions,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ["colours"],
+    queryFn: fetchColours,
+  });
+
+  useEffect(() => {
+    console.log("colourOptions:", colourOptions);
+  }, [colourOptions]);
 
   const handleInputChange = (newValue) => {
     setInputValue(newValue);
@@ -27,18 +64,18 @@ const MultiTabSelector = () => {
     switch (event.key) {
       case "Enter":
       case "Tab":
-        const optionExists = colourOptions.find(
+        const optionExists = colourOptions?.find(
           (option) => option.label.toLowerCase() === inputValue.toLowerCase()
         );
 
         if (optionExists) {
-          setSelectedOptions((prevSelected) => [
-            ...prevSelected,
+          setSelectedOptions([
+            ...selectedOptions,
             { label: optionExists.label, value: optionExists.value },
           ]);
         } else {
-          setSelectedOptions((prevSelected) => [
-            ...prevSelected,
+          setSelectedOptions([
+            ...selectedOptions,
             { label: inputValue, value: inputValue, isText: true },
           ]);
         }
@@ -60,15 +97,16 @@ const MultiTabSelector = () => {
     </components.MultiValueContainer>
   );
 
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error loading options</div>;
+
   return (
     <div className="main">
       <label htmlFor="multi-select">
         <div className="label upper-label">
           <div>
             <div className="icons-container">
-              <div className="left-icons">
-                <span className="arrow-icon">&#9660;</span>
-              </div>
+              <div className="left-icons"></div>
             </div>
           </div>
           <div className="upper-label_right">
